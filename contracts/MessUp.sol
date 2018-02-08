@@ -7,7 +7,7 @@ contract MessUp {
     function MessUp() public {
     }
 
-    function getArrayLength() constant public returns (uint) {
+    function getArrayLength() view public returns (uint) {
         return someArray.length;
     }
 
@@ -36,5 +36,9 @@ contract MessUp {
         
         // Phew!
         assert(someNumber == original);
+    }
+
+    function getArrayIndexLocation(uint storageSlot, uint index) pure returns (uint slot) {
+        return uint(keccak256(storageSlot)) + index;
     }
 }
