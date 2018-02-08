@@ -40,6 +40,17 @@ contract MessUp {
         assert(someNumber == original);
     }
 
+    function setNumberInArrayNotWrongMemory(uint newValue) public {
+        uint original = someNumber;
+
+        uint[] memory inMem = new uint[](1);
+        inMem[0] = newValue;
+        someArray = inMem;
+        
+        // Phew!
+        assert(someNumber == original);
+    }
+
     function getArrayIndexLocation(uint storageSlot, uint index) pure returns (uint slot) {
         return uint(keccak256(storageSlot)) + index;
     }
