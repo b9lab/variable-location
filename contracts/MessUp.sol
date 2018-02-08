@@ -24,8 +24,10 @@ contract MessUp {
 
         // That hurts, doesn't it?
         assert(someNumber == original + 1);
-        // What happened? `ouch` pointed to the first slot, i.e. `someNumber`. And `someNumber` was
-        // interpreted as the array length, which was incremented.
+        // What happened? `ouch` was surreptitiously compiled with the `storage` keyword. But because no
+        // storage location was given alongside the declaration, the structure was peremptorily assigned to the
+        // first storage slot, i.e. `someNumber`. Since an array keeps its length on the storage slot it is
+        // assigned `someNumber` is interpreted as the array length, which was incremented.
     }
 
     function pushNumberNotWrong(uint newValue) public {
